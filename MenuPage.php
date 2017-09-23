@@ -1,4 +1,8 @@
-<?php 
+/**
+ * MenuPage.php
+*/
+
+<?php
 
     session_start();
     //The user has not logged in or has logged out, so needs to go to the login page

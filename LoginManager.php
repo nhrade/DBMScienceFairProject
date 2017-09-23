@@ -1,10 +1,9 @@
-<?php
 /**
- * Created by PhpStorm.
- * User: Noah
- * Date: 9/22/2017
- * Time: 10:14 PM
- */
+* LoginManager.php
+*/
+
+<?php
+
 require_once 'config.php';
 
 function login() {
