@@ -18,7 +18,7 @@
 
 	<body>
 		<h1>Regular User Page</h1>
-        <h2>Hello <?php $_SESSION['name'] ?></h2>
+        <h2>Hello <?php echo $_SESSION['name'] ?></h2>
 		<br/>
 		<h2>Menus</h2>
 		<h3>Reports:</h3>
