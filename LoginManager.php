@@ -47,6 +47,7 @@ function login() {
                         //The person logged in is a regular user, so take them to the menu page
                         $_SESSION['userloggedin'] = true;
                         $_SESSION['name'] = $row[0];
+                        $_SESSION['email'] = $row[1];
                         $_SESSION['account_type'] = $row[3];
                         header("Location: MenuPage.php");
                     }
