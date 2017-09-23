@@ -1,6 +1,4 @@
-/**
- * Login.php
-*/
+<!-- Login.php -->
 
 <?php
     //Starting a session whenever the webpage is visited

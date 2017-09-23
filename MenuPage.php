@@ -1,7 +1,4 @@
-/**
- * MenuPage.php
-*/
-
+<!-- MenuPage.php -->
 <?php
 
     session_start();

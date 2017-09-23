@@ -1,8 +1,8 @@
-/**
-* LoginManager.php
-*/
 
 <?php
+/**
+ * LoginManager.php
+ */
 
 require_once 'config.php';
 
