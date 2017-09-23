@@ -3,6 +3,11 @@
 <?php
     //Starting a session whenever the webpage is visited
     session_start();
+    if($_SESSION['userloggedin']) {
+        if($_SESSION['account_type'] !== 'admin') {
+            header('Location: MenuPage.php');
+        }
+    }
 ?>
 <!DOCTYPE html>
 

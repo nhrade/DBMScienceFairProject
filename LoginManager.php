@@ -7,8 +7,6 @@
 require_once 'config.php';
 
 function login() {
-
-
     $db = mysqli_connect(Config::HOST, Config::UNAME,
         Config::PASSWORD, Config::DB_NAME) or die("Unable to connect to DB!");
     $admin_login_query = "SELECT * FROM login WHERE Account_Type = 'admin'";
@@ -26,6 +24,9 @@ function login() {
             if ($email === $row[1]) {
                 if ($password === $row[2]) {
                     $_SESSION['userloggedin'] = true;
+                    $_SESSION['name'] = $row[0];
+                    $_SESSION['email'] = $row[1];
+                    $_SESSION['account_type'] = $row[3];
                     header("Location: AdminMenu.php");
                 }
                 else {
