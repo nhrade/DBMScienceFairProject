@@ -20,7 +20,7 @@
 	<body>
 		<h1>Regular User Page</h1>
         <?php
-            if($_SESSION['userloggedin']) { 
+            if($_SESSION['userloggedin']) {
                 echo '<a href="Logout.php">Logout</a>';
             }
         ?>

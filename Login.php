@@ -7,6 +7,9 @@
         if($_SESSION['account_type'] !== 'admin') {
             header('Location: MenuPage.php');
         }
+        else {
+            header('Location: AdminMenu.php');
+        }
     }
 ?>
 <!DOCTYPE html>
