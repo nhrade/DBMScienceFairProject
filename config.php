@@ -11,4 +11,7 @@ class Config {
     const HOST = 'localhost';
     const UNAME = 'root';
     const PASSWORD = 'admin1';
+    const WRONG_PASS_MSG = 'Wrong password entered!';
+    const USER_NOT_FOUND_MSG = 'User not found!';
+
 }

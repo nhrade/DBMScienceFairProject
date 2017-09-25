@@ -6,6 +6,16 @@
 
 require_once 'config.php';
 
+function show_error_alert($msg) {
+    echo <<<ALERT_WRONG_PASS
+                    <div id="wrong-pass-alert" class="alert alert-danger alert-dismissible fade show" role="alert">$msg
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+ALERT_WRONG_PASS;
+}
+
 function login() {
     $db = mysqli_connect(Config::HOST, Config::UNAME,
         Config::PASSWORD, Config::DB_NAME) or die("Unable to connect to DB!");
@@ -30,7 +40,7 @@ function login() {
                     header("Location: AdminMenu.php");
                 }
                 else {
-                    echo '<p style="color: red">Wrong password entered!</p>';
+                    show_error_alert(Config::WRONG_PASS_MSG);
                 }
 
                 mysqli_free_result($res);
@@ -52,11 +62,11 @@ function login() {
                         header("Location: MenuPage.php");
                     }
                     else {
-                        echo '<p style="color: red">Wrong password entered!</p>';
+                        show_error_alert(Config::WRONG_PASS_MSG);
                     }
                 }
                 else {
-                    echo '<p style="color: red">User not found!</p>';
+                    show_error_alert(Config::USER_NOT_FOUND_MSG);
                 }
                 mysqli_free_result($res);
             }
