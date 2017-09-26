@@ -18,7 +18,37 @@ ALERT_WRONG_PASS;
 }
 
 function login() {
-    $db = mysqli_connect(Config::HOST, Config::UNAME,
+
+    
+    //Starting a session whenever the webpage is visited
+    session_start();
+    
+    //Accepted usernames and passwords
+    $uname = array("admin","user");
+    $pword = array("admin1","user1");
+    
+    //checks to see if the uname and pword have been typed from the HTML code
+    if(isset($_POST['uname']) && isset($_POST['pword'])) {
+        
+        //checks to see if the entered username and passwords are correct
+        //POST gets the uname entered from the website and checks with the accepted usernames and passwords
+        if(($_POST['uname'] == $uname[0] && $_POST['pword'] == $pword[0])){
+            
+            //The user is an admin so they need to be redirected to admin page
+            $_SESSION['userloggedin'] = true;
+            header("Location: AdminMenu.php");
+        }
+        
+        if(($_POST['uname'] == $uname[1] && $_POST['pword'] == $pword[1])){
+            
+            //The person logged in is a regular user, so take them to the meunu page
+            $_SESSION['userloggedin'] = true;
+            header("Location: MenuPage.php");
+        }
+        
+    }
+    
+    /* $db = mysqli_connect(Config::HOST, Config::UNAME,
         Config::PASSWORD, Config::DB_NAME) or die("Unable to connect to DB!");
     $admin_login_query = "SELECT * FROM login WHERE Account_Type = 'admin'";
     //checks to see if the uname and pword have been typed from the HTML code
@@ -74,5 +104,5 @@ function login() {
         }
 
     }
-    mysqli_close($db);
+    mysqli_close($db); */
 }
