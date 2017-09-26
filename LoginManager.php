@@ -8,7 +8,8 @@ require_once 'config.php';
 
 function show_error_alert($msg) {
     echo <<<ALERT_WRONG_PASS
-                    <div id="wrong-pass-alert" class="alert alert-danger alert-dismissible fade show" role="alert">$msg
+                    <div id="wrong-pass-alert"  style="max-width: 20em; margin: 0 auto;"
+                    class="alert alert-danger alert-dismissible fade show" role="alert">$msg
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -73,7 +74,5 @@ function login() {
         }
 
     }
-
     mysqli_close($db);
 }
-
