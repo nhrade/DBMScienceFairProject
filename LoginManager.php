@@ -36,6 +36,7 @@ function login() {
             
             //The user is an admin so they need to be redirected to admin page
             $_SESSION['userloggedin'] = true;
+            $_SESSION['account_type'] = 'admin';
             header("Location: AdminMenu.php");
         }
         
