@@ -15,13 +15,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body style="background-color: #d9e5ec;">
 
         <?php
             if(isset($_GET['email']) && isset($_GET['password'])
                 && isset($_GET['fullName']) && isset($_GET['accountType'])) {
-                $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
-                $account->createAccountInDatabase();
+              //  $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
+              //  $account->createAccountInDatabase();
             }
         ?>
         <div class="container">
