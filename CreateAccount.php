@@ -1,5 +1,9 @@
 
 
+<?php
+    require_once 'Account.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -13,13 +17,33 @@
 
     <body>
 
-        <form action="">
-            <div class="form-row">
-                <div class="form-group col-md-6"
-            </div>
+        <?php
+            if(isset($_GET['email']) && isset($_GET['password'])
+                && isset($_GET['fullName']) && isset($_GET['accountType'])) {
+                $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
+                $account->createAccountInDatabase();
+            }
+        ?>
+        <div class="container">
+            <h1>Create Account</h1>
+            <form action="">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="email" class="form-control" name="email" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
+                        <input type="text" name="fullName" class="form-control" placeholder="Full Name">
+                        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="accountType" id="inlineFormCustomSelect">
+                            <option selected>Choose...</option>
+                            <option value="1">Teacher</option>
+                            <option value="2">Coordinator</option>
+                            <option value="3">Judge</option>
+                        </select>
+                        <button class="btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                    </div>
+                </div>
 
-        </form>
-
+            </form>
+        </div>
     </body>
 </html>
 

@@ -26,4 +26,5 @@ class Account
         }
         mysqli_close($db);
     }
+
 }

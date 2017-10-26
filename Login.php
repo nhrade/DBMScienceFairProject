@@ -45,7 +45,7 @@
             <input class="form-control" type="password" placeholder="Password" name="pword" required>
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <a id="create-account-link">Create Account</a>
+            <a id="create-account-link" href="CreateAccount.php">Create Account</a>
         </form>
     </div>
         <?php

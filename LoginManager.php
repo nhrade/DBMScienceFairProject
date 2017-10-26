@@ -9,7 +9,7 @@ require_once 'config.php';
 
 class LoginManager {
 
-    public function show_error_alert($msg) {
+    public static function show_error_alert($msg) {
         echo  <<<ALERT_WRONG_PASS
                         <div id="wrong-pass-alert"  style="max-width: 20em; margin: 0 auto;"
                         class="alert alert-danger alert-dismissible fade show" role="alert">$msg
@@ -45,7 +45,7 @@ ALERT_WRONG_PASS;
                         header("Location: AdminMenu.php");
                     }
                     else {
-                        $this->show_error_alert(Config::WRONG_PASS_MSG);
+                        LoginManager::show_error_alert(Config::WRONG_PASS_MSG);
                     }
 
                     mysqli_free_result($res);
@@ -67,11 +67,11 @@ ALERT_WRONG_PASS;
                             header("Location: MenuPage.php");
                         }
                         else {
-                            $this->show_error_alert(Config::WRONG_PASS_MSG);
+                            LoginManager::show_error_alert(Config::WRONG_PASS_MSG);
                         }
                     }
                     else {
-                        $this->show_error_alert(Config::USER_NOT_FOUND_MSG);
+                        LoginManager::show_error_alert(Config::USER_NOT_FOUND_MSG);
                     }
                     mysqli_free_result($res);
                 }
