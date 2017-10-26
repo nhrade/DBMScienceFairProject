@@ -27,9 +27,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <link rel="stylesheet" href="css/login.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js" type="text/javascript"></script>
     </head>
 
-	<body style="background-color: #e3f2fd;">
+	<body style="background-color: #d9e5ec;">
     <div class="container">
 
         <!--Creating a form that will send the data to the php code above
@@ -44,12 +45,13 @@
             <input class="form-control" type="password" placeholder="Password" name="pword" required>
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
-            <a href="">Create Account</a>
+            <a id="create-account-link">Create Account</a>
         </form>
     </div>
         <?php
             require_once 'LoginManager.php';
-            login();
+            $manager = new LoginManager();
+            $manager->login();
         ?>
 
 	</body>
