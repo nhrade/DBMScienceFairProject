@@ -23,8 +23,5 @@ class Account
             echo "Account could not be created.";
         }
         mysqli_close($db);
-
     }
-
-
 }
