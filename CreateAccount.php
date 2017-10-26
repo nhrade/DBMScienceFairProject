@@ -20,8 +20,8 @@
         <?php
             if(isset($_GET['email']) && isset($_GET['password'])
                 && isset($_GET['fullName']) && isset($_GET['accountType'])) {
-              //  $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
-              //  $account->createAccountInDatabase();
+                $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
+                $account->createAccountInDatabase();
             }
         ?>
         <div class="container">
