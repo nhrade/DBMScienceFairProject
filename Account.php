@@ -45,7 +45,7 @@ class Account
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
 
         //Taking the values and inserting it into the user table
-        $sqlQuery = "INSERT INTO users VALUES ('$this->name','$pass','$this->email',NULL,'$this->accountType')";
+        $sqlQuery = "INSERT INTO users VALUES ('$this->name','$this->password','$this->email',NULL,'$this->accountType')";
 
         if(mysqli_query($dbConnection,$sqlQuery)){
             echo "Account created successfully";

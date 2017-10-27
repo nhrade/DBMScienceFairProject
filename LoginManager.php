@@ -22,66 +22,63 @@ ALERT_WRONG_PASS;
 
     public function login() {
 
-        $db = mysqli_connect(Config::HOST, Config::UNAME,
+        $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
             Config::PASSWORD, Config::DB_NAME) or die("Unable to connect to DB!");
-        $login_table = Config::LOGIN_TABLE_NAME;
-        $admin_login_query = "SELECT * FROM $login_table WHERE Account_Type = 'admin'";
 
         //checks to see if the uname and pword have been typed from the HTML code
         if (isset($_POST['uname']) && isset($_POST['pword'])) {
+
             $email = $_POST['uname'];
             $password = $_POST['pword'];
 
-            // query login table for admin credentials
-            $res = $db->query($admin_login_query);
-            if (mysqli_num_rows($res) > 0) {
+            //Selects the information from the table corresponding to the email given
+            $loginQuery = "SELECT * FROM users WHERE email = '$email'";
+
+            // Attempts the query to find the info of the user with the given email
+            if (!($queryResults = $dbConnection->query($loginQuery))) {
+                echo "Query failed";
+            }
+
+            //A table that has 0 rows means that there are no entries
+            if (mysqli_num_rows($queryResults) > 0) {
+
                 // fetch row from sql result
-                $row = mysqli_fetch_row($res);
+                $row = mysqli_fetch_row($queryResults);
 
                 // check if email is equal to admin email and the same with password
-                if ($email === $row[1]) {
-                    if ($password === $row[2]) {
+                if ($email === $row[2]) {
+
+                    if ($password === $row[1]) {
+
                         $_SESSION['userloggedin'] = true;
                         $_SESSION['name'] = $row[0];
                         $_SESSION['email'] = $row[1];
-                        $_SESSION['account_type'] = $row[3];
-                        header("Location: AdminMenu.php");
+                        $_SESSION['account_type'] = $row[4];
+
+                        switch($_SESSION['account_type']){
+
+                            case 'Judge':
+                                header("Location: MenuPage.php");
+                                break;
+
+                            case 'Coordinator':
+                                header("Location: AdminMenu.php");
+                                break;
+                            case 'Teacher':
+                                header("Location: AdminMenu.php");
+                                break;
+                        }
                     }
                     else {
                         LoginManager::show_error_alert(Config::WRONG_PASS_MSG);
                     }
-
-                    mysqli_free_result($res);
+                    mysqli_free_result($queryResults);
                 }
-                else {
-
-                    $user_login_query = "SELECT * FROM login WHERE Email = '$email'";
-                    $res = $db->query($user_login_query);
-
-                    // Check if result is empty if not go to password check
-                    if (mysqli_num_rows($res) > 0) {
-                        $row = mysqli_fetch_row($res);
-                        if ($password === $row[2]) {
-                            //The person logged in is a regular user, so take them to the menu page
-                            $_SESSION['userloggedin'] = true;
-                            $_SESSION['name'] = $row[0];
-                            $_SESSION['email'] = $row[1];
-                            $_SESSION['account_type'] = $row[3];
-                            header("Location: MenuPage.php");
-                        }
-                        else {
-                            LoginManager::show_error_alert(Config::WRONG_PASS_MSG);
-                        }
-                    }
-                    else {
-                        LoginManager::show_error_alert(Config::USER_NOT_FOUND_MSG);
-                    }
-                    mysqli_free_result($res);
-                }
+                mysqli_close($dbConnection);
             }
-
+            else {
+                echo "Your email that you provided was not found";
+            }
         }
-        mysqli_close($db);
     }
-
 }

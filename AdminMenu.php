@@ -15,7 +15,7 @@
     </head>
 
     <?php
-        if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'admin') {
+        if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
     ?>
     <body style="background-color: ghostwhite">
 
@@ -27,7 +27,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Reports</a>
-                <a class="nav-item nav-link" href="#">Add User</a>
+                <a class="nav-item nav-link" href="CreateAccount.php">Add User</a>
+                <a class="nav-item nav-link" href="DeleteAccount.php">Delete User</a>
                 <a  class="nav-item nav-link" href="Logout.php">Logout</a>
             </div>
         </div>
