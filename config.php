@@ -7,10 +7,12 @@
  */
 
 class Config {
+
+    //variables used to connect to the database
     const DB_NAME = 'cs4342';
     const HOST = 'localhost';
     const UNAME = 'root';
-    const PASSWORD = 'admin1';
+    const PASSWORD = 'root';
     const WRONG_PASS_MSG = 'Wrong password entered!';
     const USER_NOT_FOUND_MSG = 'User not found!';
     const LOGIN_TABLE_NAME = 'users';

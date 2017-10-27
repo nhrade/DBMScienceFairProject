@@ -21,10 +21,12 @@ ALERT_WRONG_PASS;
     }
 
     public function login() {
+
         $db = mysqli_connect(Config::HOST, Config::UNAME,
             Config::PASSWORD, Config::DB_NAME) or die("Unable to connect to DB!");
         $login_table = Config::LOGIN_TABLE_NAME;
         $admin_login_query = "SELECT * FROM $login_table WHERE Account_Type = 'admin'";
+
         //checks to see if the uname and pword have been typed from the HTML code
         if (isset($_POST['uname']) && isset($_POST['pword'])) {
             $email = $_POST['uname'];

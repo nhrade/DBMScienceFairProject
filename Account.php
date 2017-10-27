@@ -4,32 +4,45 @@
  */
 
 require_once 'config.php';
+
+/**The account class is going to be used to create a new account for the user whenever
+ the appropriate account selects create account. Only Teachers and Coordinators will be
+ able to create accounts.*/
 class Account
 {
+    //Used to create a new entry in the users table
     public $name, $password, $email, $accountType, $gradeLevel;
-
 
     function  __construct($name, $email, $password, $accountType) {
         $this->name = $name;
         $this->email = $email;
-        $this->password;
+        $this->password = $password;
         $this->accountType = $accountType;
     }
 
+    /**Takes the initialized variables to create a new account into the users tables
+     in the database.*/
     function createAccountInDatabase() {
+
+        //Creating a secure password using hashes
         $pass = password_hash($this->password, PASSWORD_BCRYPT);
         $login_table_name =  Config::LOGIN_TABLE_NAME;
-        $sql = "INSERT INTO users VALUES ($this->name,
-          $this->email, $this->password, $this->accountType)";
-        $db = mysqli_connect(Config::HOST, Config::UNAME,
+
+        //Connecting to the database to add the new user
+        $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
-        if($db->query($sql) == true) {
+
+        //Taking the values and inserting it into the user table
+        $sqlQuery = "INSERT INTO users VALUES ('$this->name','$this->password','$this->email',NULL,'$this->accountType')";
+
+        if(mysqli_query($dbConnection,$sqlQuery)){
             echo "Account created successfully";
         }
+
         else {
-            echo "Account not created!";
+            echo "Account not created! " . mysqli_error($dbConnection);
         }
-        mysqli_close($db);
+        mysqli_close($dbConnection);
     }
 
 }
