@@ -46,6 +46,7 @@
 
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
             <a id="create-account-link" href="CreateAccount.php">Create Account</a>
+            <a id="delete-account-link" href="DeleteAccount.php">Delete Account</a>
         </form>
     </div>
         <?php
