@@ -31,6 +31,7 @@ ALERT_WRONG_PASS;
         if (isset($_POST['uname']) && isset($_POST['pword'])) {
             $email = $_POST['uname'];
             $password = $_POST['pword'];
+
             // query login table for admin credentials
             $res = $db->query($admin_login_query);
             if (mysqli_num_rows($res) > 0) {

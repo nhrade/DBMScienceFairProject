@@ -21,7 +21,7 @@
 
         //Once the user has entered the required values, an account will be created into the database
             if(isset($_GET['email']) && isset($_GET['password'])
-                && isset($_GET['fullName'])) {
+                && isset($_GET['fullName']) && isset($_GET['accountType'])) {
                 $account = new Account($_GET['fullName'], $_GET['email'], $_GET['password'], $_GET['accountType']);
                 $account->createAccountInDatabase();
             }

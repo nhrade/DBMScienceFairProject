@@ -17,7 +17,19 @@ class Account
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->accountType = $accountType;
+
+        //The user can create 3 account types only, Judge, Teacher or Coordinator accounts
+        switch ($accountType){
+            case 1:
+                $this->accountType = 'Teacher';
+                break;
+            case 2:
+                $this->accountType = 'Coordinator';
+                break;
+            case 3:
+                $this->accountType = 'Judge';
+                break;
+        }
     }
 
     /**Takes the initialized variables to create a new account into the users tables
