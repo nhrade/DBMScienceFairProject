@@ -2,6 +2,7 @@
 
 <?php
     require_once 'Account.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +16,27 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </head>
 
+
+
+    <?php
+    if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
+    ?>
     <body style="background-color: #d9e5ec;">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
+        <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#">Reports</a>
+                <a class="nav-item nav-link" href="CreateAccount.php">Add User</a>
+                <a class="nav-item nav-link" href="DeleteAccount.php">Delete User</a>
+                <a  class="nav-item nav-link" href="Logout.php">Logout</a>
+            </div>
+        </div>
+    </nav>
 
         <?php
 
@@ -47,6 +68,17 @@
 
             </form>
         </div>
+
+    <?php
+    }
+    else {
+        echo <<< ACCESS_STRING
+            <h2 style="color: red">Access Denied: You don't have permission to access this page!</h2>
+ACCESS_STRING;
+
+    }
+    ?>
+
     </body>
 </html>
 

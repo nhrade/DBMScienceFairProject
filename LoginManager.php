@@ -77,7 +77,7 @@ ALERT_WRONG_PASS;
                 mysqli_close($dbConnection);
             }
             else {
-                echo "Your email that you provided was not found";
+                LoginManager::show_error_alert("Could not find the email you provided.");
             }
         }
     }
