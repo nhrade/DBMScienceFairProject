@@ -47,12 +47,11 @@ ALERT_WRONG_PASS;
 
                 // check if email is equal to admin email and the same with password
                 if ($email === $row[2]) {
-
-                    if ($password === $row[1]) {
+                    if (password_verify($password, $row[1])) {
 
                         $_SESSION['userloggedin'] = true;
                         $_SESSION['name'] = $row[0];
-                        $_SESSION['email'] = $row[1];
+                        $_SESSION['email'] = $row[2];
                         $_SESSION['account_type'] = $row[4];
 
                         switch($_SESSION['account_type']){
@@ -60,7 +59,6 @@ ALERT_WRONG_PASS;
                             case 'Judge':
                                 header("Location: MenuPage.php");
                                 break;
-
                             case 'Coordinator':
                                 header("Location: AdminMenu.php");
                                 break;
@@ -77,7 +75,7 @@ ALERT_WRONG_PASS;
                 mysqli_close($dbConnection);
             }
             else {
-                echo "Your email that you provided was not found";
+                LoginManager::show_error_alert(Config::USER_NOT_FOUND_MSG);
             }
         }
     }
