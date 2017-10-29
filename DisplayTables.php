@@ -48,20 +48,32 @@ class DisplayTables
         //Need to display the accounts in users table so the user can select one to delete
         $displayAccountsQuery = "SELECT Sid,Sfull_name,Sgrade_level,Sschool FROM STUDENT";
         $results = $dbConnection -> query($displayAccountsQuery);
-
+        echo '<table class="table">';
+        echo '<tr><td>Student</td></td><td>Name</td><td>ID</td><td>Grade</td><td>School</td></tr>';
         //A table with 0 rows means that it is empty
         if($results->num_rows > 0) {
             $counter = 1;
+
             //Continues to move through the array rows that contains the entries of the users table
             while ($row = $results->fetch_assoc()) {
-                echo '<br>'."-Student ".$counter ."- ";
-                echo '<br>'."Name: " . $row["Sfull_name"] . '<br>'." ID: " . $row["Sid"] .'<br>'. " Grade Level: " . $row["Sgrade_level"]
-                    . "<br>" .'School: ' .$row["Sschool"];
+                $full_name = $row['Sfull_name']; $id = $row['Sid'];
+                $grade = $row['Sgrade_level']; $school = $row["Sschool"];
+
+                echo <<<STUDENT_TABLE_ROW
+                <tr>
+                    <td>$counter</td>
+                    <td>$full_name</td>
+                    <td>$id</td>
+                    <td>$grade</td>
+                    <td>$school</td>
+                </tr>
+STUDENT_TABLE_ROW;
                 $counter++;
             }
         }
         else {
             echo "The table has no entries";
         }
+        echo '</table>';
     }
 }
