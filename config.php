@@ -12,7 +12,7 @@ class Config {
     const DB_NAME = 'cs4342';
     const HOST = 'localhost';
     const UNAME = 'root';
-    const PASSWORD = 'root';
+    const PASSWORD = 'admin1';
     const WRONG_PASS_MSG = 'Wrong password entered!';
     const USER_NOT_FOUND_MSG = 'User not found!';
     const LOGIN_TABLE_NAME = 'users';
