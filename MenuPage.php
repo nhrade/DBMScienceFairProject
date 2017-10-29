@@ -37,7 +37,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Reports</a>
+                <a class="nav-item nav-link" href="Reports.php">Reports</a>
                 <a href="Logout.php" class="nav-item nav-link">Logout</a>
             </div>
         </div>
