@@ -57,7 +57,7 @@
                         <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
                         <input type="text" name="fullName" class="form-control" placeholder="Full Name">
                         <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="accountType" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
+
                             <option value="1">Teacher</option>
                             <option value="2">Coordinator</option>
                             <option value="3">Judge</option>

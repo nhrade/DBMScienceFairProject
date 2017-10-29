@@ -47,7 +47,7 @@ ALERT_WRONG_PASS;
 
                 // check if email is equal to admin email and the same with password
                 if ($email === $row[2]) {
-                    if (password_verify($password, $row[1])) {
+                    if ($password === $row[1]) {
 
                         $_SESSION['userloggedin'] = true;
                         $_SESSION['name'] = $row[0];
@@ -75,12 +75,11 @@ ALERT_WRONG_PASS;
                 mysqli_close($dbConnection);
             }
             else {
-<<<<<<< HEAD
+
                 LoginManager::show_error_alert("Could not find the email you provided.");
-=======
-                LoginManager::show_error_alert(Config::USER_NOT_FOUND_MSG);
->>>>>>> d01fa878d98960eced59855e1e0dbcc926865af0
+
             }
         }
     }
 }
+

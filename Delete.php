@@ -34,7 +34,7 @@ class Delete{
         }
 
         else{
-            echo "Unable to delete the account of ";
+            echo "Unable to delete the account";
         }
     }
 }

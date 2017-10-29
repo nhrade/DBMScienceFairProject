@@ -26,10 +26,12 @@ class DisplayTables
 
         //A table with 0 rows means that it is empty
         if($results->num_rows > 0) {
-
+            $counter = 1;
             //Continues to move through the array rows that contains the entries of the users table
             while ($row = $results->fetch_assoc()) {
-                echo "Name: " . $row["full_name"] . " Email: " . $row["email"] . " Account Type: " . $row["account_type"] . "<br>";
+                echo '<br>'."-Account ".$counter ."- ";
+                echo '<br>'."Name: " . $row["full_name"] . '<br>'." Email: " . $row["email"] .'<br>'. " Account Type: " . $row["account_type"] . "<br>";
+                $counter++;
             }
         }
         else {
