@@ -2,6 +2,7 @@
 
 <?php
     require_once 'Account.php';
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,27 @@
         <link rel="stylesheet" href="css/create_account.css"/>
     </head>
 
+
+
+    <?php
+    if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
+    ?>
     <body style="background-color: #d9e5ec;">
+
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
+        <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="Reports.php">Reports</a>
+                <a class="nav-item nav-link" href="CreateAccount.php">Add User</a>
+                <a class="nav-item nav-link" href="DeleteAccount.php">Delete User</a>
+                <a  class="nav-item nav-link" href="Logout.php">Logout</a>
+            </div>
+        </div>
+    </nav>
 
         <?php
 
@@ -37,7 +58,7 @@
                         <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password">
                         <input type="text" name="fullName" class="form-control" placeholder="Full Name">
                         <select class="custom-select mb-2 mr-sm-2 mb-sm-0" name="accountType" id="inlineFormCustomSelect">
-                            <option selected>Choose...</option>
+
                             <option value="1">Teacher</option>
                             <option value="2">Coordinator</option>
                             <option value="3">Judge</option>
@@ -48,6 +69,17 @@
 
             </form>
         </div>
+
+    <?php
+    }
+    else {
+        echo <<< ACCESS_STRING
+            <h2 style="color: red">Access Denied: You don't have permission to access this page!</h2>
+ACCESS_STRING;
+
+    }
+    ?>
+
     </body>
 </html>
 
