@@ -23,20 +23,31 @@ class DisplayTables
         //Need to display the accounts in users table so the user can select one to delete
         $displayAccountsQuery = "SELECT full_name,email,account_type FROM users";
         $results = $dbConnection -> query($displayAccountsQuery);
-
+        echo '<table class="table">';
+        echo '<tr><td>User</td></td><td>Name</td><td>Email</td><td>Account Type</td></tr>';
         //A table with 0 rows means that it is empty
         if($results->num_rows > 0) {
             $counter = 1;
             //Continues to move through the array rows that contains the entries of the users table
             while ($row = $results->fetch_assoc()) {
-                echo '<br>'."-Account ".$counter ."- ";
-                echo '<br>'."Name: " . $row["full_name"] . '<br>'." Email: " . $row["email"] .'<br>'. " Account Type: " . $row["account_type"] . "<br>";
+
+                $full_name = $row['full_name']; $email = $row['email']; $account_type = $row["account_type"];
+                echo <<<USER_TABLE_ROW
+                <tr>
+                    <td>$counter</td>
+                    <td>$full_name</td>
+                    <td>$email</td>
+                    <td>$account_type</td>
+                </tr>
+USER_TABLE_ROW;
                 $counter++;
             }
         }
         else {
             echo "The table has no entries";
          }
+
+         echo '</table>';
     }
 
     function displayStudentTable(){
