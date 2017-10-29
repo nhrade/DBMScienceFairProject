@@ -50,7 +50,7 @@ if($_SESSION['userloggedin'] && $_SESSION['account_type']!= 'Judge') {
 </p>
 
 <h2
-    <a class="student" type="button" onclick="location.href='DeleteAccount.php'">Show Students</a>
+    <a class="student" type="button" onclick="location.href='ShowStudents.php'">Show Students</a>
 </h2>
 <p>
     Shows all the students that have been added to the database.

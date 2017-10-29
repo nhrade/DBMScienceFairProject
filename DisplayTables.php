@@ -56,7 +56,7 @@ class DisplayTables
             while ($row = $results->fetch_assoc()) {
                 echo '<br>'."-Student ".$counter ."- ";
                 echo '<br>'."Name: " . $row["Sfull_name"] . '<br>'." ID: " . $row["Sid"] .'<br>'. " Grade Level: " . $row["Sgrade_level"]
-                    . "<br>" .'School:'."<br>" .$row["Sschool"];
+                    . "<br>" .'School: ' .$row["Sschool"];
                 $counter++;
             }
         }
