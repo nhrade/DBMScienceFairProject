@@ -47,7 +47,7 @@ ALERT_WRONG_PASS;
 
                 // check if email is equal to admin email and the same with password
                 if ($email === $row[2]) {
-                    if (password_verify(password, $row[1])) {
+                    if (password_verify($password, $row[1])) {
 
                         $_SESSION['userloggedin'] = true;
                         $_SESSION['name'] = $row[0];
