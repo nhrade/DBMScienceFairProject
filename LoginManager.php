@@ -32,7 +32,7 @@ ALERT_WRONG_PASS;
             $password = $_POST['pword'];
             $loginTable = Config::LOGIN_TABLE_NAME;
             //Selects the information from the table corresponding to the email given
-            $loginQuery = "SELECT * FROM $loginTable WHERE email = '$email'";
+            $loginQuery = "SELECT * FROM $loginTable WHERE Uemail = '$email'";
 
             // Attempts the query to find the info of the user with the given email
             if (!($queryResults = $dbConnection->query($loginQuery))) {

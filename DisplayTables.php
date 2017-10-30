@@ -21,7 +21,7 @@ class DisplayTables
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
         $login_table_name = Config::LOGIN_TABLE_NAME;
         //Need to display the accounts in users table so the user can select one to delete
-        $displayAccountsQuery = "SELECT full_name,email,account_type FROM $login_table_name";
+        $displayAccountsQuery = "SELECT Ufull_name,Uemail,Uaccount_type FROM $login_table_name";
         $results = $dbConnection -> query($displayAccountsQuery);
         echo '<table class="table">';
         echo '<tr><td>User</td></td><td>Name</td><td>Email</td><td>Account Type</td></tr>';
@@ -31,7 +31,7 @@ class DisplayTables
             //Continues to move through the array rows that contains the entries of the users table
             while ($row = $results->fetch_assoc()) {
 
-                $full_name = $row['full_name']; $email = $row['email']; $account_type = $row["account_type"];
+                $full_name = $row['Ufull_name']; $email = $row['Uemail']; $account_type = $row["Uaccount_type"];
                 echo <<<USER_TABLE_ROW
                 <tr>
                     <td>$counter</td>

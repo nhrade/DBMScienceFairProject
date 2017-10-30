@@ -28,7 +28,7 @@ class Student
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
 
         //Taking the values and inserting it into the user table
-        $sqlQuery = "INSERT INTO STUDENT VALUES ('$this->id','$this->fullName','$this->gradeLevel','$this->school',NULL,NULL)";
+        $sqlQuery = "INSERT INTO STUDENT VALUES ('$this->id','$this->fullName','$this->gradeLevel','$this->school',NULL)";
 
         if(mysqli_query($dbConnection,$sqlQuery)){
             echo "Student added successfully";
