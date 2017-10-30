@@ -20,7 +20,7 @@
 
 
     <?php
-    if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
+    if($_SESSION['account_type'] != 'aaa') {
     ?>
     <body style="background-color: #d9e5ec;">
 
