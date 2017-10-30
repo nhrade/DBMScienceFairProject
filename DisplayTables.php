@@ -19,9 +19,9 @@ class DisplayTables
         //Creating connection to the database
         $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
-
+        $login_table_name = Config::LOGIN_TABLE_NAME;
         //Need to display the accounts in users table so the user can select one to delete
-        $displayAccountsQuery = "SELECT full_name,email,account_type FROM users";
+        $displayAccountsQuery = "SELECT full_name,email,account_type FROM $login_table_name";
         $results = $dbConnection -> query($displayAccountsQuery);
         echo '<table class="table">';
         echo '<tr><td>User</td></td><td>Name</td><td>Email</td><td>Account Type</td></tr>';

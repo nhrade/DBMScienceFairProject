@@ -25,9 +25,9 @@ class Delete{
         //Creating connection to the database
         $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
             Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
-
+        $login_table_name = Config::LOGIN_TABLE_NAME;
         //WIll attempt to delete email from table if it exists
-        $deleteQuery = "DELETE FROM users WHERE email= '$this->email'";
+        $deleteQuery = "DELETE FROM $login_table_name WHERE email= '$this->email'";
 
         if(mysqli_query($dbConnection,$deleteQuery)){
             echo "Successful deletion of the account ";
