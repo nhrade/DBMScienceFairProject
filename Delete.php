@@ -37,4 +37,22 @@ class Delete{
             echo "Unable to delete the account";
         }
     }
+
+    function deleteStudent($id){
+
+        $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
+            Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
+        $student_table_name = Config::STUDENT_TABLE_NAME;
+
+        //WIll attempt to delete student from STUDENT table
+        $deleteQuery = "DELETE FROM $student_table_name WHERE Sid= '$id'";
+
+        if(mysqli_query($dbConnection,$deleteQuery)){
+            echo "Successful deletion of the student ";
+        }
+
+        else{
+            echo "Unable to delete the student";
+        }
+    }
 }
