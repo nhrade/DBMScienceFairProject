@@ -15,7 +15,7 @@ session_start();
 </head>
 
 <?php
-if($_SESSION['userloggedin'] && $_SESSION['account_type']!= 'Judge') {
+if($_SESSION['userloggedin']) {
 ?>
 <body style="background-color: ghostwhite">
 

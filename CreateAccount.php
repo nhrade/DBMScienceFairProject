@@ -1,8 +1,8 @@
 
 
 <?php
-    require_once 'Account.php';
     session_start();
+    require_once 'Account.php';
 ?>
 
 <!DOCTYPE html>

@@ -60,7 +60,7 @@ require_once "Delete.php";
     if(isset($_GET["email"])){
         $email = $_GET["email"];
         $deleteAccount = new Delete($email);
-        $deleteAccount ->deleteAccount();
+        $deleteAccount ->deleteAccount($email);
     }
 
     }

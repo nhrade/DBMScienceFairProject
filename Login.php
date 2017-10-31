@@ -49,11 +49,23 @@
             <a id="delete-account-link" href="DeleteAccount.php">Delete Account</a>
         </form>
     </div>
+
         <?php
             require_once 'LoginManager.php';
             $manager = new LoginManager();
             $manager->login();
         ?>
 
+    <h3>
+        Admin Credentials
+    </h3>
+    <p>Email: admin@admin.com <br>Password: admin1
+    </p>
+
+    <h3>
+        Regular user Credentials
+    </h3>
+    <p>Email: user@user.com <br>Password: user1
+    </p>
 	</body>
 </html>
