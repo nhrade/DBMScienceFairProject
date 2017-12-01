@@ -28,6 +28,8 @@ if($_SESSION['userloggedin']) {
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="Reports.php">Reports</a>
             <a class="nav-item nav-link" href="Users.php">Users</a>
+            <a  class="nav-item nav-link" href="StudentMenu.php">Students</a>
+            <a  class="nav-item nav-link" href="ViewProjects.php">Projects</a>
             <a  class="nav-item nav-link" href="Logout.php">Logout</a>
         </div>
     </div>

@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Projects Menu</title>
+    <title>Students Menu</title>
     <link rel="stylesheet" href="css/navbar.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -44,17 +44,23 @@ if($_SESSION['userloggedin']) {
 
 </style>
 <h2
-<a class="project" type="button" onclick="location.href='AddProject.php'">Add A Project</a>
+<a class="project" type="button" onclick="location.href='AddStudent.php'">Add A New Student</a>
 </h2>
 <p>
-    Add a project to the student. The student's id must be entered.
+    Add a student to the database so that he/she can be judged the day of the science fair.
 </p>
 
 <h2
-<a class="project" type="button" onclick="location.href='ShowProjects.php'">Show All Projects</a>
+<a class="project" type="button" onclick="location.href='DeleteStudent.php'">Delete A Student</a>
 </h2>
 <p>
-    Displays all projects that have been created and entered into the system.
+    Allows you to remove or change information about a student.
+</p>
+<h2
+<a class="project" type="button" onclick="location.href='ShowStudents.php'">Show Students</a>
+</h2>
+<p>
+    Shows all the students that have been added to the database.
 </p>
 <?php
 }
@@ -66,4 +72,3 @@ ACCESS_STRING;
 }
 ?>
 </body>
-
