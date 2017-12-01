@@ -1,25 +1,23 @@
 <?php
-
 session_start();
-require_once "DisplayTables.php";
-
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Users Menu</title>
+    <link rel="stylesheet" href="css/navbar.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-</head>
 
+</head>
 
 <?php
 if($_SESSION['userloggedin']) {
 ?>
-<body style="background-color: #d9e5ec;">
+<body style="background-color: ghostwhite">
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
     <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
@@ -35,16 +33,28 @@ if($_SESSION['userloggedin']) {
     </div>
 </nav>
 
-<div class="container">
-    <h1>Projects Created</h1>
-</div>
+<style>
+    .project{
+        background-color: #d9e5ec;
+        color: black;
+        padding: 10px;
+    }
 
+</style>
+<h2
+<a class="project" type="button" onclick="location.href='CreateAccount.php'">Add A New User</a>
+</h2>
+<p>
+    Add a new account for a user. Will require email, name, password, and account type
+</p>
+
+<h2
+<a class="project" type="button" onclick="location.href='DeleteAccount.php'">Delete A User</a>
+</h2>
+<p>
+    Allows for accounts to be deleted by entering the email associated with the account.
+</p>
 <?php
-
-//Displaying the users table
-$displayUsers = new DisplayTables();
-$displayUsers->displayProjectsTable();
-
 }
 else {
     echo <<< ACCESS_STRING
