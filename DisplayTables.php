@@ -24,7 +24,7 @@ class DisplayTables
         $displayAccountsQuery = "SELECT Ufull_name,Uemail,Uaccount_type FROM $login_table_name";
         $results = $dbConnection->query($displayAccountsQuery);
         echo '<table class="table">';
-        echo '<tr><td>User</td></td><td>Name</td><td>Email</td><td>Account Type</td></tr>';
+        echo '<tr><td><strong>User</strong></td></td><td><strong>Name</strong></td><td><strong>Email</strong></td><td><strong>AccountType</strong></td></tr>';
         //A table with 0 rows means that it is empty
         if ($results->num_rows > 0) {
             $counter = 1;
@@ -62,7 +62,7 @@ USER_TABLE_ROW;
         $displayAccountsQuery = "SELECT Sid,Sfull_name,Sgrade_level,Sschool FROM STUDENT";
         $results = $dbConnection->query($displayAccountsQuery);
         echo '<table class="table">';
-        echo '<tr><td>Student</td></td><td>Name</td><td>ID</td><td>Grade</td><td>School</td></tr>';
+        echo '<tr><td><strong>Student</strong></td></td><td><strong>Name</strong></td><td><strong>ID</strong></td><td><strong>Grade</strong></td><td><strong>School</strong></td></tr>';
         //A table with 0 rows means that it is empty
         if ($results->num_rows > 0) {
             $counter = 1;
@@ -102,8 +102,8 @@ STUDENT_TABLE_ROW;
         $displayAccountsQuery = "SELECT * FROM PROJECT";
         $results = $dbConnection->query($displayAccountsQuery);
         echo '<table class="table">';
-        echo '<tr><td>Project</td></td><td>Project ID</td></td><td>Title</td><td>Description</td><td>Year</td><td>Category</td><td>Picture</td>
-          <td>Student ID</td></tr>';
+        echo '<tr><td><strong>Project</strong></td></td><td><strong>Project ID</strong></td></td><td><strong>Title</strong></td><td><strong>Description</strong></td><td><strong>Year</strong></td><td><strong>Category</strong></td><td><strong>Picture</strong></td>
+          <td><strong>Student ID</strong></td></tr>';
         //A table with 0 rows means that it is empty
         if ($results->num_rows > 0) {
             $counter = 1;

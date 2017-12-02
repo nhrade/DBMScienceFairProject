@@ -1,11 +1,12 @@
 <?php
 session_start();
+require_once 'config.php';
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Projects Menu</title>
+    <title>Grade Menu</title>
     <link rel="stylesheet" href="css/navbar.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -35,40 +36,30 @@ if($_SESSION['userloggedin']) {
     </div>
 </nav>
 
-<style>
-    .project{
-        background-color: #d9e5ec;
-        color: black;
-        padding: 10px;
+<?php
+
+//Establishing connection to DB so that students names can be retrieved to populate drop down  menu
+$dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
+    Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
+$displayStudents = "SELECT Sfull_name,Sid FROM STUDENT"; //Selecting id and student name from STUDENT table for drop down menu
+$results = $dbConnection->query($displayStudents);
+
+//The user will select the student's name and will be taken to another page so that a rubric can be created for the select student
+//The student is selected and his/her unique id is stored so that data can be stored in the database using the id
+echo '<form method="post" action="CreateRubric.php">';
+    echo '<select name="studentToGrade">';
+
+    if ($results->num_rows > 0) {
+        while ($row = $results->fetch_assoc()) {
+            $full_name = $row['Sfull_name'];
+            $id = $row['Sid'];
+            echo '<option value="'.$id.'">'.$full_name.' '.$id.'</option>';
+        }
     }
-
-</style>
-<h2
-<a class="project" type="button" onclick="location.href='GradeProject.php'">Grade A Project</a>
-</h2>
-<p>
-    Grade a project for the selected student.
-</p>
-<h2
-<a class="project" type="button" onclick="location.href='AddProject.php'">Add A Project</a>
-</h2>
-<p>
-    Add a project to the student. The student's id must be entered.
-</p>
-
-<h2
-<a class="project" type="button" onclick="location.href='ShowProjects.php'">Show All Projects</a>
-</h2>
-<p>
-    Displays all projects that have been created and entered into the system.
-</p>
-
-<h2
-<a class="project" type="button" onclick="location.href='RubricMenu.php'">Show Rubrics</a>
-</h2>
-<p>
-    Displays a selected rubric corresponding to the student and rubric id.
-</p>
+    echo '</select>';
+    echo '<input type="submit" value="Select the student"/>';
+echo '</form>';
+?>
 
 <?php
 }
@@ -80,4 +71,3 @@ ACCESS_STRING;
 }
 ?>
 </body>
-

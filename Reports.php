@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "config.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,44 +37,64 @@ if($_SESSION['userloggedin']) {
 </nav>
 
 <style>
-    .student{
-        background-color: #d9e5ec;
+    .project2{
+        background-color:  #d9e5ec;
         color: black;
-        padding: 10px;
+        padding: 8px;
     }
 
 </style>
-<h2
-    <a class="student" type="button" onclick="location.href='AddStudent.php'">Add A Student</a>
-</h2>
+<?php
 
-<p>
-    Add a student to the database so that he/she can be judged the day of the science fair.
-</p>
 
-<h2
-    <a class="student" type="button" onclick="location.href='ShowStudents.php'">Show Students</a>
-</h2>
 
-<p>
-    Shows all the students that have been added to the database.
-</p>
+$dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
+    Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
 
-<h2
-<a class="student" type="button" onclick="location.href='DeleteStudent.php'">Modify A Student</a>
-</h2>
+$selectStudentView = "SELECT * FROM STUDENT_VIEW"; //Selecting the students name and teacher's email using the id selected from drop down menu
+$results = $dbConnection->query($selectStudentView);
 
-<p>
-    Allows you to remove or change information about a student.
-</p>
+echo '<h4 class="project2">Student Information:</h4>';
+echo '<table class="table">';
+echo '<tr><td><strong>Student Name</strong></td></td><td><strong>ID</strong></td><td><strong>School</strong></td><td><strong>Grade Level</strong></td><td><strong>Teacher Name</strong></td></tr>';
 
-<h2
-<a class="student" type="button" onclick="location.href='ViewProjects.php'">View Projects</a>
-</h2>
 
-<p>
-    Goes to the projects page to allow modifications and creations of projects.
-</p>
+    while ($row = mysqli_fetch_array($results)){
+    echo '
+        <tr>
+                    <td>'.$row["Sfull_name"].'</td>
+                    <td>' . $row["Sid"] . '</td>
+                    <td>'. $row["Sschool"] .'</td>
+                    <td>'. $row["Sgrade_level"] .'</td>
+                    <td>'. $row["Tname"] .'</td>
+                </tr>
+        ';
+    }
+    echo "</table>";
+
+$selectProjectView = "SELECT * FROM PROJECT_VIEW"; //Selecting the students name and teacher's email using the id selected from drop down menu
+$results = $dbConnection->query($selectProjectView);
+
+echo '<h4 class="project2">Project Information:</h4>';
+echo '<table class="table">';
+echo '<tr><td><strong>Project Title</strong></td></td><td><strong>Description</strong></td><td><strong>Year</strong></td><td><strong>Category</strong></td><td><strong>Student Name</strong></td><td><strong>Average Score</strong></td></tr>';
+
+
+while ($row = mysqli_fetch_array($results)){
+    echo '
+        <tr>
+                    <td>'.$row["Ptitle"].'</td>
+                    <td>' . $row["Pdescription"] . '</td>
+                    <td>'. $row["Pyear"] .'</td>
+                    <td>'. $row["Pcategory"] .'</td>
+                    <td>'. $row["student_name"] .'</td>
+                    <td>'. $row["average_score"] .'</td>
+                </tr>
+        ';
+}
+echo "</table>";
+
+?>
 
 <?php
 }
