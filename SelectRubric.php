@@ -56,6 +56,7 @@ if($_SESSION['userloggedin']) {
 
     if ($results->num_rows > 0) {
         while ($row = $results->fetch_assoc()) {
+            $_SESSION['ReportId'] = $row['Rid'];
             $rubricId = $row['Rid'];
             echo '<option value="'.$rubricId.'">'.$rubricId.'</option>';
         }

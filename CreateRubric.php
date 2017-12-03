@@ -106,8 +106,6 @@ if ($option) {
     echo '<h4 class="names">'.$category.'</h4>';
     echo '<h4 class="project2">Project Title</h4>';
     echo '<h4 class="names">'.$title.'</h4>';
-    echo '<h4 class="project2">Rubric Number (No duplicate numbers allowed) </h4>';
-    echo '<input type="text" name="rubricNumber" placeholder="Unique rubric number. No duplicates">';
 
     echo '<h4 class="project2">Scientific Method 35 Points </h4>';
     echo '<h6 class="project">Q1) Presented a question that could be answered through experimentation.</h6>';

@@ -61,7 +61,7 @@ if($_SESSION['userloggedin']) {
     <?php
 
     $rubricId = $_POST['rubric'];
-
+    
     //Establishing connection to DB so that students names can be retrieved to populate drop down  menu
     $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
         Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');

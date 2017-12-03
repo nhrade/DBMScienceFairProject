@@ -46,7 +46,22 @@ if($_SESSION['userloggedin']) {
 </style>
 <?php
 
+echo '<form method="post" action="SelectReport.php">';
+echo '<select name="reportInformation">';
 
+
+        echo '<option value="student">Student Information</option>';
+        echo '<option value="project">Project Information</option>';
+        echo '<option value="kGrade">Kindergarten Information</option>';
+        echo '<option value="1stGrade">1st Grade Information</option>';
+        echo '<option value="2ndGrade">2nd Grade Information</option>';
+        echo '<option value="3rdGrade">3rd Grade Information</option>';
+        echo '<option value="4thGrade">4th Grade Information</option>';
+        echo '<option value="5thGrade">5th Grade Information</option>';
+
+echo '</select>';
+echo '<input type="submit" value="Select report to view"/>';
+echo '</form>';
 
 $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
     Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
