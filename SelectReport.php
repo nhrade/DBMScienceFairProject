@@ -21,7 +21,7 @@ if($_SESSION['userloggedin']) {
 <body style="background-color: #d9e5ec;">
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-    <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+    <a class="navbar-brand" href="AdminMenu.php">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -59,6 +59,23 @@ if($_SESSION['userloggedin']) {
 </style>
 
 <?php
+
+echo '<form method="post" action="SelectReport.php">';
+echo '<select name="reportInformation">';
+
+
+echo '<option value="student">Student Information</option>';
+echo '<option value="project">Project Information</option>';
+echo '<option value="kGrade">Kindergarten Information</option>';
+echo '<option value="1stGrade">1st Grade Information</option>';
+echo '<option value="2ndGrade">2nd Grade Information</option>';
+echo '<option value="3rdGrade">3rd Grade Information</option>';
+echo '<option value="4thGrade">4th Grade Information</option>';
+echo '<option value="5thGrade">5th Grade Information</option>';
+
+echo '</select>';
+echo '<input type="submit" value="Select report to view"/>';
+echo '</form>';
 
 $selectedInformation = $_POST['reportInformation'];
 
@@ -117,33 +134,39 @@ else if($selectedInformation == 'project'){
 
 else{
     $gradeLevel;
-
+    $gradeString;
     if($selectedInformation == 'kGrade'){
         $gradeLevel = 0;
+        $gradeString = "Kindergarten Information";
     }
 
     else if($selectedInformation == '1stGrade'){
         $gradeLevel = 1;
+        $gradeString = "1st Grade Information";
     }
 
     else if($selectedInformation == '2ndGrade'){
         $gradeLevel = 2;
+        $gradeString = "2nd Grade Information";
     }
     else if($selectedInformation == '3rdGrade'){
         $gradeLevel = 3;
+        $gradeString = "3rd Grade Information";
     }
     else if($selectedInformation == '4thGrade'){
         $gradeLevel = 4;
+        $gradeString = "4th Grade Information";
     }
     else if($selectedInformation == '5thGrade'){
         $gradeLevel = 5;
+        $gradeString = "5th Grade Information";
     }
 
     //Creating the select for the grade level the user has chosen
     $gradeLevelQuery = "SELECT Sfull_name,Sgrade_level,Ptitle,Rtotal_score FROM RUBRIC NATURAL JOIN PROJECT NATURAL JOIN
-                        STUDENT WHERE Sgrade_level = '$gradeLevel' GROUP BY RURBIC.Pid";
+                        STUDENT WHERE Sgrade_level = '$gradeLevel' GROUP BY Pid";
     $results = $dbConnection->query($gradeLevelQuery);
-
+    echo '<h4 class="project2">'.$gradeString.':</h4>';
     echo '<table class="table">';
     echo '<tr><td><strong>Student Name</strong></td></td><td><strong>Grade Level</strong></td><td><strong>Project Title</strong></td><td><strong>Total Score</strong></td></tr>';
 

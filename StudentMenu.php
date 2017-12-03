@@ -20,7 +20,7 @@ if($_SESSION['userloggedin']) {
 <body style="background-color: ghostwhite">
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-    <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+    <a class="navbar-brand" href="AdminMenu.php">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -62,6 +62,17 @@ if($_SESSION['userloggedin']) {
 <p>
     Shows all the students that have been added to the database.
 </p>
+
+<h2
+<a class="project" type="button">Show Student Information</a>
+</h2>
+
+<form action="StudentInformation.php" method="post">
+    Student ID: <input type="text" name="id"><br>
+    <input type="submit">
+</form>
+
+
 <?php
 }
 else {
