@@ -18,20 +18,21 @@ session_start();
 
 
 <?php
-if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
+if($_SESSION['userloggedin'] && $_SESSION['account_type'] != 'Judge') {
 ?>
 <body style="background-color: #d9e5ec;">
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-    <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+    <a class="navbar-brand" href="AdminMenu.php">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="Reports.php">Reports</a>
-            <a class="nav-item nav-link" href="CreateAccount.php">Add User</a>
-            <a class="nav-item nav-link" href="DeleteAccount.php">Delete User</a>
+            <a class="nav-item nav-link" href="Users.php">Users</a>
+            <a  class="nav-item nav-link" href="StudentMenu.php">Students</a>
+            <a  class="nav-item nav-link" href="ViewProjects.php">Projects</a>
             <a  class="nav-item nav-link" href="Logout.php">Logout</a>
         </div>
     </div>

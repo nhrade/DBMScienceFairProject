@@ -38,15 +38,35 @@ if($_SESSION['userloggedin']) {
 </nav>
 
 <div class="container">
-    <h1>All Students in Database</h1>
+    <h1>Select A Student</h1>
+    <?php
+    //Establishing connection to DB so that students names can be retrieved to populate drop down  menu
+    $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
+    Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
+    $displayStudents = "SELECT Sfull_name,Sid FROM STUDENT"; //Selecting id and student name from STUDENT table for drop down menu
+    $results = $dbConnection->query($displayStudents);
+
+    //The user will select the student's name and will be taken to another page so that a rubric can be created for the select student
+    //The student is selected and his/her unique id is stored so that data can be stored in the database using the id
+    echo '<form method="post" action="SelectRubric.php">';
+        echo '<select name="studentInformation">';
+
+            if ($results->num_rows > 0) {
+            while ($row = $results->fetch_assoc()) {
+            $full_name = $row['Sfull_name'];
+            $id = $row['Sid'];
+            echo '<option value="'.$id.'">'.$full_name.' '.$id.'</option>';
+            }
+            }
+            echo '</select>';
+        echo '<input type="submit" value="Select the student"/>';
+        echo '</form>';
+    ?>
+
+
 </div>
 
 <?php
-
-//Displaying the users table
-$displayUsers = new DisplayTables();
-$displayUsers->displayStudentTable();
-
 }
 else {
     echo <<< ACCESS_STRING

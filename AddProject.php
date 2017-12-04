@@ -1,9 +1,8 @@
 <?php
-
 session_start();
-require_once "DisplayTables.php";
-
+require_once 'Project.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +15,9 @@ require_once "DisplayTables.php";
 </head>
 
 
+
 <?php
-if($_SESSION['userloggedin']) {
+if($_SESSION['userloggedin'] && $_SESSION['account_type'] != 'Judge') {
 ?>
 <body style="background-color: #d9e5ec;">
 
@@ -37,16 +37,42 @@ if($_SESSION['userloggedin']) {
     </div>
 </nav>
 
+<?php
+
+//Once the user has entered the required values, an account will be created into the database
+if(isset($_GET['projectID']) && isset($_GET['projectTitle'])
+    && isset($_GET['projectDescription']) && isset($_GET['projectYear']) && isset($_GET['projectCategory']) && isset($_GET['projectPicture'])
+    && isset($_GET['studentID'])) {
+    $account = new Project($_GET['projectID'], $_GET['projectTitle'], $_GET['projectDescription'], $_GET['projectYear'],
+        $_GET['projectCategory'],$_GET['projectPicture'],$_GET['studentID']);
+    $account->createProject();
+}
+?>
+
 <div class="container">
-    <h1>All Students in Database</h1>
+    <h1>Add A Project to Student</h1>
+    <form action="">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text"  name="projectID" class="form-control"placeholder="Project ID">
+                <input type="text" name="projectTitle" class="form-control" placeholder="Title of Project">
+                <input type="text" name="projectDescription" class="form-control" placeholder="Description">
+                <input type="text" name="projectYear" class="form-control" placeholder="Year">
+                <input type="text" name="projectCategory" class="form-control" placeholder="Category">
+                <input type="text" name="projectPicture" class="form-control" placeholder="Picture(Optional)">
+                <input type="text" name="studentID" class="form-control" placeholder="Student ID">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Create Project</button>
+            </div>
+        </div>
+
+    </form>
 </div>
 
 <?php
 
-//Displaying the users table
+//Displaying the table
 $displayUsers = new DisplayTables();
 $displayUsers->displayStudentTable();
-
 }
 else {
     echo <<< ACCESS_STRING
@@ -55,5 +81,6 @@ ACCESS_STRING;
 
 }
 ?>
+
 </body>
 </html>

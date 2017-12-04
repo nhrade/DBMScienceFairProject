@@ -38,14 +38,14 @@ if($_SESSION['userloggedin']) {
 </nav>
 
 <div class="container">
-    <h1>All Students in Database</h1>
+    <h1>Projects Created</h1>
 </div>
 
 <?php
 
 //Displaying the users table
 $displayUsers = new DisplayTables();
-$displayUsers->displayStudentTable();
+$displayUsers->displayProjectsTable();
 
 }
 else {
@@ -56,4 +56,3 @@ ACCESS_STRING;
 }
 ?>
 </body>
-</html>

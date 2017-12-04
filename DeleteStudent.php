@@ -2,6 +2,7 @@
 
 session_start();
 require_once "DisplayTables.php";
+require_once "Delete.php";
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ require_once "DisplayTables.php";
 
 
 <?php
-if($_SESSION['userloggedin']) {
+if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
 ?>
 <body style="background-color: #d9e5ec;">
 
@@ -38,14 +39,30 @@ if($_SESSION['userloggedin']) {
 </nav>
 
 <div class="container">
-    <h1>All Students in Database</h1>
+    <h1>Delete Student</h1>
+    <form action="">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <input type="text"  name="studentID" class="form-control"placeholder="Student ID">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Delete Student</button>
+            </div>
+        </div>
+
+    </form>
 </div>
 
 <?php
 
-//Displaying the users table
+//Displaying the table
 $displayUsers = new DisplayTables();
 $displayUsers->displayStudentTable();
+
+//Attempts to delete the email the user has entered in the email area
+if(isset($_GET["studentID"])){
+    $studentID = $_GET["studentID"];
+    $deleteAccount = new Delete(NULL);
+    $deleteAccount ->deleteStudent($studentID);
+}
 
 }
 else {

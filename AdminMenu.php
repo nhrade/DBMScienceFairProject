@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Admin Menu</title>
+		<title>Menu</title>
         <link rel="stylesheet" href="css/navbar.css">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -15,24 +15,27 @@
     </head>
 
     <?php
-        if($_SESSION['userloggedin'] && $_SESSION['account_type'] === 'Coordinator') {
+        if($_SESSION['userloggedin']) {
     ?>
     <body style="background-color: ghostwhite">
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-        <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+        <a class="navbar-brand" href="AdminMenu.php">Menu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="Reports.php">Reports</a>
-                <a class="nav-item nav-link" href="CreateAccount.php">Add User</a>
-                <a class="nav-item nav-link" href="DeleteAccount.php">Delete User</a>
+                <a class="nav-item nav-link" href="Users.php">Users</a>
+                <a  class="nav-item nav-link" href="StudentMenu.php">Students</a>
+                <a  class="nav-item nav-link" href="ViewProjects.php">Projects</a>
                 <a  class="nav-item nav-link" href="Logout.php">Logout</a>
             </div>
         </div>
     </nav>
+
+
     <?php
         }
         else {

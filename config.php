@@ -16,5 +16,6 @@ class Config {
     const WRONG_PASS_MSG = 'Wrong password entered!';
     const USER_NOT_FOUND_MSG = 'User not found!';
     const LOGIN_TABLE_NAME = 'USER';
+    const STUDENT_TABLE_NAME = 'STUDENT';
 }
 
