@@ -24,7 +24,7 @@ if($_SESSION['userloggedin'] && $_SESSION['gradingStudent']) {
 <body style="background-color: #d9e5ec;">
 
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-    <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+    <a class="navbar-brand" href="AdminMenu.php">Menu</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -106,8 +106,6 @@ if ($option) {
     echo '<h4 class="names">'.$category.'</h4>';
     echo '<h4 class="project2">Project Title</h4>';
     echo '<h4 class="names">'.$title.'</h4>';
-    echo '<h4 class="project2">Rubric Number (No duplicate numbers allowed) </h4>';
-    echo '<input type="text" name="rubricNumber" placeholder="Unique rubric number. No duplicates">';
 
     echo '<h4 class="project2">Scientific Method 35 Points </h4>';
     echo '<h6 class="project">Q1) Presented a question that could be answered through experimentation.</h6>';

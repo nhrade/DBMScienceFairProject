@@ -31,6 +31,8 @@
     </head>
 
 	<body style="background-color: #d9e5ec;">
+    <img class="logo" width="20%" height="20%"
+         src="https://media.kvia.com/npg-kvia-media-us-east-1/photo/2016/11/03/Canutillo-ISD_1478223177859_4450462_ver1.0_1280_720.png"/>
     <div class="container">
 
         <!--Creating a form that will send the data to the php code above

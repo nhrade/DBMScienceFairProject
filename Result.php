@@ -20,7 +20,7 @@ if($_SESSION['userloggedin']) {
     <body style="background-color: ghostwhite">
 
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: ghostwhite">
-        <a class="navbar-brand" href="AdminMenu.php">Admin Menu</a>
+        <a class="navbar-brand" href="AdminMenu.php">Menu</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -67,7 +67,6 @@ if($_SESSION['userloggedin']) {
     $questionNumber[17] = $_POST["question18"];
     $questionNumber[18] = $_POST["question19"];
     $questionNumber[19] = $_POST["question20"];
-    $rubricId = $_POST["rubricNumber"];
     $pid = $_SESSION['Pid'];
 
     $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
@@ -77,15 +76,24 @@ if($_SESSION['userloggedin']) {
 //Adding the scores for each question based on the Judge's scoring
     for ($i = 0; $i < 20; $i++) {
         $sum = $sum + $questionNumber[$i];
-        $questionQuery = "INSERT INTO QUESTION VALUES('$i','$questionNumber[$i]','$rubricId')";
-        mysqli_query($dbConnection, $questionQuery);
-        echo "For question " . $i . " you chose: " . $questionNumber[$i];
-        echo "<br>";
     }
 
-    $createRubricQuery = "INSERT INTO RUBRIC VALUES ('$rubricId','$sum','$pid')";
+    $createRubricQuery = "INSERT INTO RUBRIC(Rtotal_score,Pid) VALUES ('$sum','$pid')";
     mysqli_query($dbConnection, $createRubricQuery);
-    echo "Rubric created";
+
+    $getRubricId = "SELECT MAX(Rid) as max FROM RUBRIC";
+    $results = mysqli_query($dbConnection, $getRubricId);
+    $row = mysqli_fetch_array($results);
+
+    $rubricId = $row['max'];
+
+    for ($i = 0; $i < 20; $i++) {
+        $sum = $sum + $questionNumber[$i];
+        echo "For question " . $i . " you chose: " . $questionNumber[$i];
+        $questionQuery = "INSERT INTO QUESTION VALUES('$i','$questionNumber[$i]','$rubricId')";
+        mysqli_query($dbConnection, $questionQuery);
+        echo "<br>";
+    }
 }
 else {
         echo <<< ACCESS_STRING
