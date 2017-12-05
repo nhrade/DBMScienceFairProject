@@ -55,4 +55,22 @@ class Delete{
             echo "Unable to delete the student";
         }
     }
+
+    function deleteRubric($id){
+
+        $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
+            Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
+
+        //WIll attempt to delete
+        $deleteQuery = "DELETE FROM RUBRIC WHERE Rid= '$id'";
+
+        if(mysqli_query($dbConnection,$deleteQuery)){
+            echo "Successful deletion of the rubric ";
+        }
+
+        else{
+            echo "Unable to delete the rubric";
+        }
+    }
+
 }

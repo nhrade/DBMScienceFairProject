@@ -2,6 +2,7 @@
 
 session_start();
 require_once "config.php";
+require_once "Delete.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,10 +58,18 @@ if($_SESSION['userloggedin']) {
         display:inline;
     }
 </style>
-
+<h4 class="project">Delete this Rubric? </h4>
+<form action="DeleteRubric.php" method="post">
+    <select name="delete">
+        <option value="yes">Yes</option>
+    </select>
+    <input type="submit" value="Delete Rubric"/>
+</form>
     <?php
 
+
     $rubricId = $_POST['rubric'];
+    $_SESSION['DeleteID'] = $rubricId;
 
     //Establishing connection to DB so that students names can be retrieved to populate drop down  menu
     $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
@@ -79,7 +88,9 @@ if($_SESSION['userloggedin']) {
     }
 
 
-    echo '<h2>Rubric Score</h2>';
+
+
+    echo '<h2>Rubric</h2>';
     echo '<br>';
 
     echo '<h4 class="project2">Scientific Method 35 Points </h4>';
@@ -175,6 +186,7 @@ for further study, while evaluating the success and effectiveness of the project
 
 <?php
 }
+
 else {
     echo <<< ACCESS_STRING
             <h2 style="color: red">Access Denied: You don't have permission to access this page!</h2>

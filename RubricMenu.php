@@ -43,7 +43,7 @@ if($_SESSION['userloggedin']) {
     //Establishing connection to DB so that students names can be retrieved to populate drop down  menu
     $dbConnection = mysqli_connect(Config::HOST, Config::UNAME,
     Config::PASSWORD, Config::DB_NAME) or die('Unable to connect to DB.');
-    $displayStudents = "SELECT Sfull_name,Sid FROM STUDENT"; //Selecting id and student name from STUDENT table for drop down menu
+    $displayStudents = "SELECT Sfull_name,Sid FROM STUDENT WHERE "; //Selecting id and student name from STUDENT table for drop down menu
     $results = $dbConnection->query($displayStudents);
 
     //The user will select the student's name and will be taken to another page so that a rubric can be created for the select student
