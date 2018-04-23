@@ -1,5 +1,5 @@
 # DBMScienceFairProject
 
-## Development Branch
+## Master branch
 
-Put all development work here. Then merge this with the master branch.
+Don't merge development or any other branch with this unless the code works completely otherwise it might break this build.
