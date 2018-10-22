@@ -1,63 +1,73 @@
-<!DOCTYPE html>
+<!-- Login.php -->
 
-<?php 
-
+<?php
     //Starting a session whenever the webpage is visited
     session_start();
-    
-    //Accepted usernames and passwords
-    $uname = array("admin","user");
-    $pword = array("admin1","user1");
-    
-    //checks to see if the uname and pword have been typed from the HTML code
-    if(isset($_POST['uname']) && isset($_POST['pword'])) {
-        
-        //checks to see if the entered username and passwords are correct
-        //POST gets the uname entered from the website and checks with the accepted usernames and passwords
-        if(($_POST['uname'] == $uname[0] && $_POST['pword'] == $pword[0])){
-            
-            //The user is an admin so they need to be redirected to admin page
-            $_SESSION['userloggedin'] = true;
-            header("Location: AdminMenu.php");
+    if($_SESSION['userloggedin']) {
+        if($_SESSION['account_type'] != 'Coordinator') {
+            header('Location: MenuPage.php');
         }
-        
-        if(($_POST['uname'] == $uname[1] && $_POST['pword'] == $pword[1])){
-            
-            //The person logged in is a regular user, so take them to the meunu page
-            $_SESSION['userloggedin'] = true;
-            header("Location: MenuPage.php");
+        else {
+            header('Location: AdminMenu.php');
         }
-        
     }
 ?>
+<!DOCTYPE html>
 
-
-<html>
+<html lang="en">
 
 	<head>
-		<title>WebSite</title>
-	</head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<body>
-	
-		<h1>Log In</h1>
-		<div class="loginarea" style="background-color:#f1f1f1">
-	
-			<!--Creating a form that will send the data to the php code above
-		  using the post method. uname and pword will be sent once the user has typed
-		  them in and clicked the login button  -->
-		
-			<form method="post" action="Login.php">
-				<label><b>Username:</b></label>
-			     <!-- Text area for the username to be entered called uname. Will be sent to the php code -->
-				<input type="text" placeholder="Enter Username" name="uname" required>
-				<br/>
-				<label><strong>Password :</strong></label>
-				<input type="password" placeholder="Enter Password" name="pword" required>
-				<br/>
-				<button type="submit">Login</button>
-				<br/>
-			</form>
-		</div>
+        <title>Login</title>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/login.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.js" type="text/javascript"></script>
+    </head>
+
+	<body style="background-color: #d9e5ec;">
+    <img class="logo" width="20%" height="20%"
+         src="https://media.kvia.com/npg-kvia-media-us-east-1/photo/2016/11/03/Canutillo-ISD_1478223177859_4450462_ver1.0_1280_720.png"/>
+    <div class="container">
+
+        <!--Creating a form that will send the data to the php code above
+      using the post method. uname and pword will be sent once the user has typed
+      them in and clicked the login button  -->
+
+        <form method="post" action="" class="form-signin">
+            <h3 class="form-signin-heading">Science Fair Database</h3>
+
+            <input class="form-control" type="text" placeholder="Email" name="uname" required>
+
+            <input class="form-control" type="password" placeholder="Password" name="pword" required>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <a id="create-account-link" href="CreateAccount.php">Create Account</a>
+            <a id="delete-account-link" href="DeleteAccount.php">Delete Account</a>
+        </form>
+    </div>
+
+        <?php
+            require_once 'LoginManager.php';
+            $manager = new LoginManager();
+            $manager->login();
+        ?>
+
+    <h3>
+        Admin Credentials
+    </h3>
+    <p>Email: admin@admin.com <br>Password: admin1
+    </p>
+
+    <h3>
+        Regular user Credentials
+    </h3>
+    <p>Email: user@user.com <br>Password: user1
+    </p>
 	</body>
 </html>
